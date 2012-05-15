@@ -12,6 +12,17 @@ describe MusicTheory::Note do
     it "evalutes with case insensitivity" do
       Note.new("d#").should == Note.new("D#")
     end
+    it "evaluates double-sharps" do
+      Note.new("c##").should == Note.new(:d)
+    end
+    it "evalutees double-flats" do
+      Note.new("cbb").should == Note.new(:a_sharp)
+    end
+    it "interprets a leading b as note rather than flat" do
+      Note.new("b").should == Note.new(:b)
+      Note.new("bb").should == Note.new(:a_sharp)
+      Note.new("bbb").should == Note.new(:a)
+    end
   end
   
   describe "intervals" do
@@ -28,9 +39,7 @@ describe MusicTheory::Note do
     }
     EXAMPLES.each do |func, result|
       it "calculates a #{func}" do
-        n = Note.new(:c)
-        i = n.send(func)
-        i.should == Note.new(result)
+        Note.new(:c).send(func).should == Note.new(result)
       end
     end
   end

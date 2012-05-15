@@ -42,7 +42,8 @@ module MusicTheory
         end
       elsif descriptor.is_a?(String)
         descriptor.downcase!
-        descriptor.gsub!(/(.)\#/, '\1_sharp')
+        descriptor.gsub!("#", "_sharp")
+        descriptor.gsub!(/(.)b(.*)/, '\1_flat\2')
         descriptor.gsub!(/(.)b/, '\1_flat')
         self.position = Note.new(descriptor.to_sym).position
       end
