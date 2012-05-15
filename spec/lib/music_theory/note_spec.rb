@@ -21,7 +21,10 @@ describe MusicTheory::Note do
       :major_third => :e,
       :diminished_fifth => :f_sharp,
       :perfect_fifth => :g,
-      :augmented_fifth => :g_sharp
+      :augmented_fifth => :g_sharp,
+      :diminished_seventh => :b_flat_flat,
+      :minor_seventh => :b_flat,
+      :major_seventh => :b
     }
     EXAMPLES.each do |func, result|
       it "calculates a #{func}" do
